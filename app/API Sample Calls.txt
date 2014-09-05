@@ -1,0 +1,27 @@
+Foursquare:
+
+
+Some user-less calls
+--------------------
+
+
+Authentication
+--------------
+
+OAuth2 – code flow
+https://developer.foursquare.com/overview/auth
+
+
+Step 1:
+https://foursquare.com/oauth2/authenticate?client_id=YH5E510G0YPIEFFA2ZEQWGN0SGI2WKI54QTUXZZDP1A331EY&response_type=code&redirect_uri=http://localhost:8080/app/index.html
+
+
+Step 2:
+https://foursquare.com/oauth2/access_token?client_id=YH5E510G0YPIEFFA2ZEQWGN0SGI2WKI54QTUXZZDP1A331EY&client_secret=W54BBZWVYDUTYT0FC0NMKMNXTX3HT5B4THDWZZFDFT25AA4Y&grant_type=authorization_code&redirect_uri=http://localhost:8080/app/index.html&code=<CODE>
+
+
+
+
+OAuth2 - Implicit (Token Flow)
+
+https://foursquare.com/oauth2/authenticate?client_id=YH5E510G0YPIEFFA2ZEQWGN0SGI2WKI54QTUXZZDP1A331EY&response_type=token&redirect_uri=http://localhost:8080/app/index.html
