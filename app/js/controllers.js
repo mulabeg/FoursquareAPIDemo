@@ -13,6 +13,8 @@ angular.module('myApp.controllers', [])
   	$scope.searchResponse;
   	$scope.recentCheckins = null;
   	$scope.user = null;
+  	$scope.venueDetails = null;
+  	$scope.venueDetailsId = null;
 
   	$scope.queryString;
   	$scope.nearbyLocation = "Sarajevo";
@@ -69,7 +71,6 @@ angular.module('myApp.controllers', [])
         	// when the response is available
       	}).	
       	error(function(data, status, headers, config) {
-      		console.log("Failure");
       		$scope.user = null;
         	// called asynchronously if an error occurs
         	// or server returns response with an error status.
@@ -102,8 +103,6 @@ angular.module('myApp.controllers', [])
     };
 
     $scope.checkin = function(venueId) {
-    	console.log("checkin " + venueId);
-
         $http(
 	   	{
         	method: 'POST',
@@ -140,6 +139,34 @@ angular.module('myApp.controllers', [])
 
     $scope.isLoggedIn = function() {
     	return($scope.user != null);
+    }
+
+    $scope.expandVenue = function(venueId) {
+        $http(
+	   	{
+        	method: 'GET',
+        	url: 'https://api.foursquare.com/v2/venues/' + venueId,
+        	params: {
+       			client_id: $scope.CLIENT_ID,
+       			client_secret: $scope.CLIENT_SECRET,
+				v: 20130815
+        	},
+      	}).
+      	success(function(data, status, headers, config) {
+      		$scope.venueDetails = data.response.venue;
+      		$scope.venueDetailsId = venueId;
+        	// this callback will be called asynchronously
+        	// when the response is available
+      	}).	
+      	error(function(data, status, headers, config) {
+      		console.log("Failure");
+        	// called asynchronously if an error occurs
+        	// or server returns response with an error status.
+      	});	
+    }
+
+    $scope.showDetails = function(venueId) {
+    	return(venueId == $scope.venueDetailsId);
     }
 
     $scope.userInfo();

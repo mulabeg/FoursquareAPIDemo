@@ -50,7 +50,15 @@
 
       <ul>
         <li ng-repeat="venue in searchResponse.venues">
-          {{venue.name}} (<a href="#" ng-click="checkin(venue.id)">Check-In</a>)
+          <a href="" ng-click="expandVenue(venue.id)">{{venue.name}}</a>
+          (<a href="" ng-click="checkin(venue.id)">Check-In</a>)
+          <div ng-show="showDetails(venue.id)" >
+            Address:<span ng-bind="venueDetails.location.address"></span><br>
+            URL: <span ng-bind="venueDetails.url"></span><br>
+            Major: <span ng-bind="venueDetails.major"></span><br>
+            Likes: <span ng-bind="venueDetails.likes.count"></span><br>
+            Number of checkins: <span ng-bind="venueDetails.stats.checkinsCount"></span><br>
+          </div>
         </li>
       </ul>
   </div>
